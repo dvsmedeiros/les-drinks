@@ -1,0 +1,27 @@
+{
+  "name": "lesdrinks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dvsmedeiros/les-drinks.git"
+  },
+  "author": "dvsmedeiros",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dvsmedeiros/les-drinks/issues"
+  },
+  "homepage": "https://github.com/dvsmedeiros/les-drinks#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "consign": "^0.1.6",
+    "express": "^4.15.4",
+    "jsonwebtoken": "^5.4.1",
+    "mongoose": "^4.11.6"
+  }
+}

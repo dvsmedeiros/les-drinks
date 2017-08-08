@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="lesdrinks">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<title>LES Drinks</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+		<script src="js/lib/angular.min.js"></script>
+        <script src="js/lib/angular-animate.min.js"></script>
+        <script src="js/lib/angular-route.min.js"></script>
+        <script src="js/lib/angular-resource.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/controllers/login-controller.js"></script>
+		<script src="js/controllers/drinks-controller.js"></script>
+        <script src="js/services/app-service.js"></script>
+        <script src="js/services/token-interceptor.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<ng-view></ng-view>
+		</div>
+	</body>
+</html>
