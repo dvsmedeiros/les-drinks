@@ -9,12 +9,12 @@ angular.module('lesdrinks', ['ngRoute', 'ngResource', 'appService'])
 		});
 
 		$routeProvider.when('/drinks/new', {
-			templateUrl: 'partials/foto.html',
+			templateUrl: 'partials/drink.html',
 			controller: 'DrinksController'
 		});
 
-		$routeProvider.when('/drinks/edit/:fotoId', {
-			templateUrl: 'partials/foto.html',
+		$routeProvider.when('/drinks/edit/:drinkId', {
+			templateUrl: 'partials/drink.html',
 			controller: 'DrinksController'
 		});
 

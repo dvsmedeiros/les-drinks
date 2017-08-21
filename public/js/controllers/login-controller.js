@@ -6,7 +6,7 @@ angular.module('lesdrinks').controller('LoginController', function($scope, $http
 	$scope.authenticate = function(){	
 		
 		var usuario = $scope.usuario;
-		$http.post('autenticar', {
+		$http.post('authenticate', {
 			login: usuario.login, 
 			senha: usuario.senha
 		})
