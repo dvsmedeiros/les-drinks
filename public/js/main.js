@@ -4,7 +4,7 @@ angular.module('lesdrinks', ['ngRoute', 'ngResource', 'appService'])
 		$httpProvider.interceptors.push('tokenInterceptor');
 
 		$routeProvider.when('/drinks', {
-			templateUrl: 'partials/principal.html',
+			templateUrl: 'partials/products.html',
 			controller: 'DrinksController'
 		});
 
