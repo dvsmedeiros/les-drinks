@@ -4,20 +4,20 @@ module.exports = function(app){
 	var jwt = require('jsonwebtoken');
 
 	var api = {};
-	var model = mongoose.model('Usuario');
+	var model = mongoose.model('User');
 
 	api.authenticate = function (req, res) {
 		
 		model
-		.findOne({login: req.body.login, senha: req.body.senha})
-		.then(function(usuario){
+		.findOne({login: req.body.login, password: req.body.password})
+		.then(function(user){
 			
-			if(!usuario){				
+			if(!user){				
 				console.log('Login e senha inválidos');
 				res.sendStatus(401);
 			} else {
 
-				var token = jwt.sign({login: usuario.login}, app.get('secret'), {expiresIn: 84600}); 
+				var token = jwt.sign({login: user.login}, app.get('secret'), {expiresIn: 84600}); 
 				console.log(token);
 				console.log('token criado e sendo enviado no header');
 
@@ -41,7 +41,7 @@ module.exports = function(app){
 					console.log('token inválido');
 					res.sendStatus(401);
 				}
-				req.usuario = decoded;
+				req.user = decoded;
 				next();
 			});	
 		} else {

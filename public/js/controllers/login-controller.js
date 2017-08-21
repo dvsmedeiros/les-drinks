@@ -1,21 +1,21 @@
 angular.module('lesdrinks').controller('LoginController', function($scope, $http, $location){
 
-	$scope.usuario = {};
-	$scope.mensagem = '';
+	$scope.user = {};
+	$scope.message = '';
 
 	$scope.authenticate = function(){	
 		
-		var usuario = $scope.usuario;
+		var user = $scope.user;
 		$http.post('authenticate', {
-			login: usuario.login, 
-			senha: usuario.senha
+			login: user.login, 
+			password: user.password
 		})
 		.then(function(){
 			$location.path('/');
 		}, function(error){
 			console.log(error);
-   			$scope.mensagem = 'Login ou senha inválidos';
-   			$scope.usuario = {};
+   			$scope.message = 'Login ou password inválidos';
+   			$scope.user = {};
 		});
 
 	};

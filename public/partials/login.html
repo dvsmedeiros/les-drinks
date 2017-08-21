@@ -1,14 +1,14 @@
 <h1 class="text-center">Login</h1>
-<p class="alert-danger">{{mensagem}}</p>
+<p class="alert-danger">{{message}}</p>
 
 <form ng-submit="authenticate()">
 	<div class="form-group">
 		<label>Login</label>
-		<input type="text" class="form-control" ng-model="usuario.login">
+		<input type="text" class="form-control" ng-model="user.login">
 	</div>
 	<div class="form-group">
 		<label>Senha</label>
-		<input type="password" class="form-control" ng-model="usuario.senha">
+		<input type="password" class="form-control" ng-model="user.password">
 	</div>
 	<input type="submit" value="Entrar" class="btn btn-primary" >
 </form>
