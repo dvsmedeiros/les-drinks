@@ -18,6 +18,18 @@ module.exports = function (app) {
 
 	};
 
+	api.findById = function (req, res) {	
+		model
+		.findById(req.params.id)
+		.then(function(data){
+			if(!data) throw Error('Bebida não encontrada!');
+			res.json(data);	
+		}, function(error){
+			console.log(error);
+			res.status(500).json(error);
+		});
+	};
+
 	api.findAll = function (req, res) {
 		
 		model

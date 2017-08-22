@@ -6,4 +6,9 @@ module.exports = function (app) {
 	.post(api.save)
 	.get(api.findAll)
 	;
+
+	app.route('/drink/:id')
+	.get(api.findById)
+	;
+
 };
