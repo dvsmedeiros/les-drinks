@@ -1,4 +1,4 @@
-angular.module('lesdrinks').controller('LoginController', function($scope, $http, $location){
+angular.module('lesdrinks').controller('LoginController', function($rootScope, $scope, $http, $location, $window){
 
 	$scope.user = {};
 	$scope.message = '';
@@ -19,4 +19,20 @@ angular.module('lesdrinks').controller('LoginController', function($scope, $http
 		});
 
 	};
+
+	$scope.logout = function(){	
+	
+		delete $window.sessionStorage.token;
+		$location.path('login');
+
+	};
+
+	$scope.isAuthenticated = function(){
+		if($window.sessionStorage.token){
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 });
