@@ -7,21 +7,21 @@ module.exports = function(uri){
 	});
 
 	mongoose.connection.on('connected', function () {
-		console.log('Conectado ao mongodb');
+		console.log('Connected at mongodb');
 	});
 
 	mongoose.connection.on('error', function(error){
-		console.log('Erro na conexão' + error);
+		console.log('Connction error' + error);
 	});
 
 	mongoose.connection.on('disconnected', function(error){
-		console.log('Desconectado do mongodb' + error);
+		console.log('Disconnected from mongodb' + error);
 	});
 
 
 	process.on('SIGINT', function(){
 		mongoose.connection.close(function(){
-			console.log('Conexão fechada pelo término da aplicação');
+			console.log('Connection closed by application');
 			process.exit(0);
 		});
 	});
