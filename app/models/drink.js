@@ -31,14 +31,6 @@ var schema = mongoose.Schema({
 			required: true
 		}
 	},
-	fabricationDate: {
-		type: Date,
-		require: true
-	},
-	expiryDate: {
-		type: Date,
-		required: true
-	},
 	supplier: {
 		_id: {
 			type: mongoose.Schema.Types.ObjectId,
