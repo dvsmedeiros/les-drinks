@@ -1,4 +1,4 @@
-angular.module('lesdrinks').controller('DrinkController', function($scope, categoryResource, manufacturerResource, supplierResource, drinkResource){
+angular.module('lesdrinks').controller('DrinkController', function($scope, $routeParams, categoryResource, manufacturerResource, supplierResource, drinkResource){
 	
 	$scope.product = {
 		igredients: []
@@ -27,10 +27,17 @@ angular.module('lesdrinks').controller('DrinkController', function($scope, categ
 	}, function(error){
 		console.log(error);
 	});
+	
+	if($routeParams.drinkId){
+		
+		drinkResource.get({drinkId: $routeParams.drinkId}, function(product){
+			$scope.product = product;
+		}, function(error){
+			console.log(error)
+		});
+	}
 
 	$scope.submit = function(){
-		console.log(JSON.stringify($scope.product));
-		console.log(JSON.stringify($scope.stock));
 		
 		if ($scope.editForm.$valid) {
 
