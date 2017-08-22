@@ -7,16 +7,16 @@ angular.module('lesdrinks')
 			var token = res.headers('x-access-token');
 			if(token){
 				$window.sessionStorage.token = token;
-				console.log('token armazenado no navegador');
+				//console.log('token armazenado no navegador');
 			}
 			return res;
 		};
 
 		interceptor.request = function(config){
-			console.log('INTERCEPTOR');
+			//console.log('INTERCEPTOR');
 			config.headers = config.headers || {};
 			if($window.sessionStorage.token){
-				console.log('add token no header');
+				//console.log('add token no header');
 				config.headers['x-access-token'] = $window.sessionStorage.token;
 			}
 			console.log(config.headers['x-access-token']);
