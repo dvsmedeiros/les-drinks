@@ -2,12 +2,12 @@ angular.module('lesdrinks').controller('ResourceController', function ($scope) {
 	
 	$scope.status = [
 		{
-			_id: 1,
-			name: 'Ativo'
+			key: 'Ativo',
+			value: true
 		},
 		{
-			_id: 0,		
-			name: 'Inativo'
+			key: 'Inativo',
+			value: false	
 		}
 	];
 
