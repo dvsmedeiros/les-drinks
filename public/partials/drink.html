@@ -40,95 +40,110 @@
 	<div class="col-md-6">
 
 		<div class="col-md-6">
+			<div class="form-group" ng-class="{true: 'has-error',false: 'is-required'}[editForm.alcoholContent.$dirty && editForm.alcoholContent.$invalid]">
+				    <label class="control-label" for="alcoholContent">Teor Alcoólico *</label>
+				    <input ng-model="product.alcoholContent" ng-init="product.alcoholContent=0.0" type="text" ui-percentage-mask class="form-control" name="alcoholContent" placeholder="Alcohol Content" required> 
+				    <span class="help-block" ng-show="editForm.alcoholContent.$dirty && editForm.alcoholContent.$error.required"></span>
+			</div>
+		</div>
+
+		<div class="col-md-6">
 			<div class="form-group" ng-class="{true: 'has-error',false: 'is-required'}[editForm.manufacturer.$dirty && editForm.manufacturer.$invalid] ">
-				<label>Fabricante * <a href="/#/manufacturer/new">Novo Fabricante</a></label>
-				<select name="manufacturer" ng-model="product.manufacturer._id" class="form-control" required 
+				<label>Fabricante * <!--<a href="/#/manufacturer/new">Novo Fabricante</a>--></label>
+				<select name="manufacturer" ng-model="product._manufacturer._id" class="form-control" required 
 				ng-options="manufacturer._id as (manufacturer.companyName) for manufacturer in manufacturers">
-					<option value="">Escolha um Fabricante</option>
+					<option value="" selected disabled>Escolha um Fabricante</option>
 				</select>
 				<!--<a href="/#/manufacturer/new">cadastre categoria</a>-->	
 			</div>
 		</div>
 
-		<div class="col-md-6">
-			<div class="form-group" ng-class="{true: 'has-error',false: 'is-required'}[editForm.alcoholContent.$dirty && editForm.alcoholContent.$invalid]">
-				    <label class="control-label" for="alcoholContent">Teor Alcoólico *</label>
-				    <input ng-model="product.alcoholContent" ng-init="product.alcoholContent=0.0" type="number" min="0" max="100" step="0.01" class="form-control" name="alcoholContent" placeholder="Alcohol Content" required> 
-				    <span class="help-block" ng-show="editForm.alcoholContent.$dirty && editForm.alcoholContent.$error.required"></span>
-			</div>
-		</div>
-
 		<div ng-show="!product._id">
 			<div class="col-md-6">
-				<div class="form-group" ng-class="{true: 'has-error',false: 'is-required'}[editForm.fabricationDate.$dirty && editForm.fabricationDate.$invalid]">
+				<div class="form-group" ng-class="{true: 'has-error',false: 'is-required'}[editForm.fabricationDate.$invalid]">
 					    <label class="control-label" for="fabricationDate">Data de Fabricação *</label>
-					    <input ng-model="stock.record[0].fabricationDate" type="date" class="form-control" name="fabricationDate" placeholder="fabricationDate" required> 
-					    <span class="help-block" ng-show="editForm.fabricationDate.$dirty && editForm.fabricationDate.$error.required"></span>
+					    <input ng-model="stock.record[0].fabricationDate" type="date" class="form-control" name="fabricationDate" placeholder="fabricationDate"> 
+					    <span class="help-block" ng-show="editForm.fabricationDate.$error.required"></span>
 				</div>
 			</div>
 
 			<div class="col-md-6">
-				<div class="form-group" ng-class="{true: 'has-error',false: 'is-required'}[editForm.expiryDate.$dirty && editForm.expiryDate.$invalid]">
+				<div class="form-group" ng-class="{true: 'has-error',false: 'is-required'}[editForm.expiryDate.$invalid]">
 					    <label class="control-label" for="expiryDate">Data de Validade *</label>
-					    <input ng-model="stock.record[0].expiryDate" type="date" class="form-control" name="expiryDate" placeholder="Expiry Date" required> 
-					    <span class="help-block" ng-show="editForm.expiryDate.$dirty && editForm.expiryDate.$error.required"></span>
+					    <input ng-model="stock.record[0].expiryDate" type="date" class="form-control" name="expiryDate" placeholder="Expiry Date"> 
+					    <span class="help-block" ng-show="editForm.expiryDate.$error.required"></span>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="form-group" ng-class="{true: 'has-error',false: 'is-required'}[editForm.purchasePrice.$invalid]">
+					    <label class="control-label" for="purchasePrice">Preço de Compra *</label>
+					    <input ng-model="stock.record[0].purchasePrice" ng-init="stock.record[0].purchasePrice=0.0" type="text" ui-money-mask="2" class="form-control" name="purchasePrice" placeholder="Purchase Price"> 
+					    <span class="help-block" ng-show="editForm.purchasePrice.$error.required"></span>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="form-group" ng-class="{true: 'has-error',false: 'is-required'}[editForm.salePrice.$invalid]">
+					    <label class="control-label" for="salePrice">Preço de Venda *</label>
+					    <input ng-model="stock.salePrice" ng-init="stock.salePrice=0.0" type="text" ui-money-mask="2" class="form-control" name="salePrice" placeholder="Sale Price"> 
+					    <span class="help-block" ng-show="editForm.salePrice.$error.required"></span>
 				</div>
 			</div>
 
 			<div class="col-md-4">
-				<div class="form-group" ng-class="{true: 'has-error',false: 'is-required'}[editForm.stockMin.$dirty && editForm.stockMin.$invalid]">
+				<div class="form-group" ng-class="{true: 'has-error',false: 'is-required'}[editForm.stockMin.$invalid]">
 					    <label class="control-label" for="stockMin">Estoque Minimo *</label>
-					    <input ng-model="stock.min" ng-init="stock.min=0.0" type="number" min="0" step="10" class="form-control" name="stockMin" placeholder="Alcohol Content" required> 
-					    <span class="help-block" ng-show="editForm.stockMin.$dirty && editForm.stockMin.$error.required"></span>
+					    <input ng-model="stock.min" ng-init="stock.min=0.0" type="number" min="0" step="10" class="form-control" name="stockMin" placeholder="Alcohol Content"> 
+					    <span class="help-block" ng-show="editForm.stockMin.$error.required"></span>
 				</div>
 			</div>
 
 			<div class="col-md-4">
-				<div class="form-group" ng-class="{true: 'has-error',false: 'is-required'}[editForm.stockMax.$dirty && editForm.stockMax.$invalid]">
+				<div class="form-group" ng-class="{true: 'has-error',false: 'is-required'}[editForm.stockMax.$invalid]">
 					    <label class="control-label" for="stockMax">Estoque Máximo *</label>
-					    <input ng-model="stock.max" ng-init="stock.max=0.0" type="number" min="0" step="10" class="form-control" name="stockMax" placeholder="Alcohol Content" required> 
-					    <span class="help-block" ng-show="editForm.stockMax.$dirty && editForm.stockMax.$error.required"></span>
+					    <input ng-model="stock.max" ng-init="stock.max=0.0" type="number" min="0" step="10" class="form-control" name="stockMax" placeholder="Alcohol Content"> 
+					    <span class="help-block" ng-show="editForm.stockMax.$error.required"></span>
 				</div>
 			</div>
 
 			<div class="col-md-4">
-				<div class="form-group" ng-class="{true: 'has-error',false: 'is-required'}[editForm.stockInitial.$dirty && editForm.stockInitial.$invalid]">
+				<div class="form-group" ng-class="{true: 'has-error',false: 'is-required'}[editForm.stockInitial.$invalid]">
 					    <label class="control-label" for="stockInitial">Estoque Inicial *</label>
-					    <input ng-model="stock.record[0].volume" ng-init="stock.record[0].volume=0.0" type="number" min="0" step="10" class="form-control" name="stockInitial" placeholder="Alcohol Content" required> 
-					    <span class="help-block" ng-show="editForm.stockInitial.$dirty && editForm.stockInitial.$error.required"></span>
+					    <input ng-model="stock.record[0].volume" ng-init="stock.record[0].volume=0.0" type="number" min="0" step="10" class="form-control" name="stockInitial" placeholder="Alcohol Content"> 
+					    <span class="help-block" ng-show="editForm.stockInitial.$error.required"></span>
 				</div>
 			</div>
 		</div>
 
-		<div class="col-md-6">	
+		<div class="col-md-4">	
 			<div class="form-group" ng-class="{true: 'has-error',false: 'is-required'}[editForm.supplier.$dirty && editForm.supplier.$invalid] ">
-				<label>Fornecedor * <a href="/#/supplier/new">Novo fornecedor</a></label>
-				<select name="supplier" ng-model="product.supplier._id" class="form-control" required 
+				<label>Fornecedor * <!--<a href="/#/supplier/new">Novo fornecedor</a>--></label>
+				<select name="supplier" ng-model="product._supplier._id" class="form-control" required 
 				ng-options="supplier._id as (supplier.companyName) for supplier in suppliers">
-					<option value="">Escolha um Fornecedor</option>
+					<option value="" selected disabled>Fornecedor</option>
 				</select>
 				<!--<a href="/#/supplier/new">cadastre categoria</a>-->	
 			</div>
 		</div>
 
-
-		<div class="col-md-6">	
+		<div class="col-md-4">	
 			<div class="form-group" ng-class="{true: 'has-error',false: 'is-required'}[editForm.category.$dirty && editForm.category.$invalid] ">
-				<label>Categoria * <a href="/#/category/new">Nova categoria</a></label>
-				<select name="category" ng-model="product.category._id" class="form-control" required 
+				<label>Categoria * <!--<a href="/#/category/new">Nova categoria</a>--></label>
+				<select name="category" ng-model="product._category._id" class="form-control" required 
 				ng-options="category._id as (category.name) for category in categories">
-					<option value="">Escolha uma Categoria</option>
+					<option value="" selected disabled>Categoria</option>
 				</select>	
 				<!--<span class="help-block" ng-show="editForm.name.$dirty && editForm.name.$error.required ">Categoria do Produto é obrigatório.</span>-->
 			</div>
 		</div>
 
-		<div class="col-md-12">
+		<div class="col-md-4">
 			<div class="form-group" ng-class="{true: 'has-error',false: 'is-required'}[editForm.active.$dirty && editForm.active.$invalid]">
 				<label>Status *</label>
 				<select name="active" ng-model="product.active" class="form-control" required 
-				ng-controller="ResourceController" ng-options="s._id as (s.name | uppercase) for s in status">
-					<option value="">Escolha um status</option>
+				ng-controller="ResourceController" ng-options="s.value as (s.key | uppercase) for s in status">
+					<option value="" selected disabled>Status</option>
 				</select>
 				<span class="help-block" ng-show="editForm.name.$dirty && editForm.name.$error.required"></span>
 			</div>
@@ -139,7 +154,7 @@
 	<div class="col-md-12">
 		<div class="col-md-12">
 			<!-- ng-disabled="editForm.$invalid" -->
-			<button type="submit" class="btn btn-primary">
+			<button type="submit" class="btn btn-primary" ng-disabled="editForm.$invalid">
 				Salvar
 			</button>
 			<a href="#/drinks" class="btn btn-primary">Voltar</a>
