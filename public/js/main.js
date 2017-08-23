@@ -1,4 +1,4 @@
-angular.module('lesdrinks', ['ngRoute', 'ngResource', 'appService'])
+angular.module('lesdrinks', ['ngRoute', 'ngResource', 'ui.utils.masks', 'appService'])
 	.config(function($routeProvider, $locationProvider, $httpProvider) {
 
 		$httpProvider.interceptors.push('tokenInterceptor');
@@ -23,6 +23,10 @@ angular.module('lesdrinks', ['ngRoute', 'ngResource', 'appService'])
 			controller: 'LoginController'
 		});
 
-		$routeProvider.otherwise({redirectTo: '/drinks'});
+		$routeProvider.when('/404', {
+			templateUrl: 'partials/404.html'
+		});
+
+		$routeProvider.otherwise({redirectTo: '/404'});
 
 	});
