@@ -19,7 +19,7 @@ angular.module('lesdrinks')
 				//console.log('add token no header');
 				config.headers['x-access-token'] = $window.sessionStorage.token;
 			}
-			console.log(config.headers['x-access-token']);
+			//console.log(config.headers['x-access-token']);
 			return config;
 		};
 
