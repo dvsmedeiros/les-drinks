@@ -10,8 +10,11 @@ module.exports = function(app){
 		
 		model
 		.findOne({login: req.body.login, password: req.body.password})
-		.then(function(user){
-			
+		.exec(function(err, user){
+			if(err){
+				console.log('Login e senha inválidos');
+				res.sendStatus(401);
+			}
 			if(!user){				
 				console.log('Login e senha inválidos');
 				res.sendStatus(401);
@@ -24,9 +27,6 @@ module.exports = function(app){
 				res.set('x-access-token', token);
 				res.end();
 			}
-		}, function(error){
-			console.log('Login e senha inválidos');
-			res.sendStatus(401);
 		});
 	};
 

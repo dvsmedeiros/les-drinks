@@ -9,12 +9,13 @@ module.exports = function(app){
 		
 		model
 		.find({})
-		.then(function(data){
+		.exec(function(err, data){
+			if(err){
+				console.log(error);
+				res.status(500).json(error);	
+			}
 			console.log(data.length + ' Categoria(s) encontrada(s)');
 			res.json(data)
-		}, function(error){
-			console.log(error);
-			res.status(500).json(error);
 		});
 
 	};
