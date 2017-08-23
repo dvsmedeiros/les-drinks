@@ -1,4 +1,4 @@
-angular.module('lesdrinks').controller('DrinkController', function($scope, $routeParams, categoryResource, manufacturerResource, supplierResource, drinkResource){
+angular.module('lesdrinks').controller('DrinkController', function($scope, $routeParams, $location, categoryResource, manufacturerResource, supplierResource, drinkResource){
 	
 	$scope.product = {
 		igredients: []
@@ -38,28 +38,29 @@ angular.module('lesdrinks').controller('DrinkController', function($scope, $rout
 	}
 
 	$scope.submit = function(){
-		
-		if ($scope.editForm.$valid) {
+
+		console.log(JSON.stringify($scope.product));
+		console.log(JSON.stringify($scope.stock));
+		//if ($scope.editForm.$valid) {
 
 			if($scope.product._id){
-
-				drinkResource.update($scope.product, function(status) {
+				drinkResource.update({drinkId: $scope.product._id}, $scope.product, function(status) {
 					$scope.product = {};
 					$scope.message = status.message;
+					$location.path('drinks');
 				}, function(erro) {
 					console.log(erro);
 				});
-
 			} else {
-
 				drinkResource.save($scope.product, function(status) {
 					$scope.product = {};
 					$scope.message = status.message;
+					$location.path('drinks');
 				}, function(erro) {
 					console.log(erro);
 				});
 			}
-		}
+		//}
 		
 	};
 
