@@ -25,23 +25,20 @@ var schema = mongoose.Schema({
 			}
 		}
 	],
-	manufacturer: {
-		_id: {
-			type: mongoose.Schema.Types.ObjectId,
-			required: true
-		}
+	_manufacturer: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Manufacturer',
+		required: true
 	},
-	supplier: {
-		_id: {
-			type: mongoose.Schema.Types.ObjectId,
-			required: true
-		}
+	_supplier: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Supplier',
+		required: true
 	},
-	category: {
-		_id: {
-			type: mongoose.Schema.Types.ObjectId,
-			required: true
-		}
+	_category: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Category',
+		required: true
 	},
 	active: {
 		type: Boolean,
