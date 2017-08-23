@@ -9,6 +9,8 @@ module.exports = function (app) {
 
 	app.route('/drink/:id')
 	.get(api.findById)
+	.put(api.update)
+	.delete(api.removeById)
 	;
 
 };
