@@ -17,6 +17,10 @@ var schema = mongoose.Schema({
 		type: String,
 		required: true
 	},
+	salePrice: {
+		type: Number,
+		required: true
+	},
 	igredients: [
 		{
 			description: {
