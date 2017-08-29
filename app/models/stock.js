@@ -4,11 +4,7 @@ var schema = mongoose.Schema({
 
 	_drink: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'RecordType',
-		required: true
-	},
-	salePrice: {
-		type: Number,
+		ref: 'Drink',
 		required: true
 	},
 	min: {
@@ -19,9 +15,13 @@ var schema = mongoose.Schema({
 		type: Number,
 		required: true
 	},
-	records: [
+	record: [
 		{
 			purchasePrice : {
+				type: Number,
+				required: true
+			},
+			salePrice : {
 				type: Number,
 				required: true
 			},
@@ -39,12 +39,11 @@ var schema = mongoose.Schema({
 			},
 			insertionDate : {
 				type: Date,
-				required: true
+				default: Date.now
 			},
 			_recordType: {
 				type: mongoose.Schema.Types.ObjectId,
-				ref: 'RecordType',
-				required: true
+				ref: 'Type'
 			},
 			_user: {
 				type: mongoose.Schema.Types.ObjectId,
