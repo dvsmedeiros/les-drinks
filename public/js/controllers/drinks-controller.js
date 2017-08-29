@@ -1,11 +1,11 @@
-angular.module('lesdrinks').controller('DrinksController', function($scope, $routeParams, categoryResource, supplierResource, drinkResource){
+angular.module('lesdrinks').controller('DrinksController', function($scope, $rootScope, $window, $routeParams, categoryResource, supplierResource, drinkResource){
 
 	$scope.message = '';
 	$scope.categories = [];
 	$scope.suppliers = [];
+	$scope.recordTypes = [];
 	$scope.drinks = [];
 	$scope.drinkFilter = {};
-
 
 	categoryResource.query(function(categories){
 		$scope.categories = categories;
@@ -36,7 +36,15 @@ angular.module('lesdrinks').controller('DrinksController', function($scope, $rou
 	};
 
 	$scope.findByFilter = function(){
-	
+		drinkResource.query($scope.drinkFilter,function(drinks){
+			$scope.drinks = drinks;
+		}, function(error){
+			console.log(error);
+		});
 	};
+
+	$scope.filterClean = function(){
+		$scope.drinkFilter = {};
+	}
 
 });
