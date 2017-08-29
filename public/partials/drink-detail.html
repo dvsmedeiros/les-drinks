@@ -1,0 +1,152 @@
+<div class="page-header text-center">
+	<h1>{{stock._drink.name}}</h1>
+</div>
+
+<p ng-show="message.length" class="alert alert-danger">{{message}}</p>
+	
+	<div class="col-md-9">
+		<div class="panel panel-default panel-body">
+			<div class="col-md-4">			
+				<p><strong>Nome: </strong>{{stock._drink.name}}</p>
+				<p><strong>Código: </strong>{{stock._drink.code}}</p>
+				<p><strong>Teor Alcoólico: </strong>{{stock._drink.alcoholContent}} %</p>
+				<p><strong>Preço de Venda: </strong>{{stock._drink.salePrice | currency}}</p>
+			</div>
+			<div class="col-md-4">
+				<p><strong>Descrição: </strong>{{stock._drink.description}}</p>
+				<p><strong>Fabricante: </strong>{{stock._drink._manufacturer.companyName}}</p>
+				<p><strong>Fornecedor: </strong>{{stock._drink._supplier.companyName}}</p>
+			</div>
+			<div class="col-md-4">
+				<p><strong>Categoria: </strong>{{stock._drink._category.name}}</p>
+				<p><strong>Igredientes:</strong>
+					<!--<ul class="list-inline" ng-repeat="igredient in stock._drink.igredients">-->
+						<span ng-repeat="igredient in stock._drink.igredients">{{igredient.description}}</span>
+					<!--</ul>-->
+				</p>
+				<p><strong>Status: </strong>{{stock._drink.active ? 'Ativo' : 'Inativo'}}</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="table-responsive">
+			<table class="table">
+				<tr>
+					<td><h4><strong>Mínimo:</strong></h4></td>
+					<td class="text-right"><h4>{{stock.min}}</h4></td>
+				</tr>
+				<tr>
+					<td><h4><strong>Máximo:</strong></h4></td>
+					<td class="text-right"><h4>{{stock.max}}</h4></td>
+				</tr>
+				<tr>
+					<td><h4><strong>Atual:</strong></h4></td>
+					<td class="text-right"><h4>{{sum}}</h4></td>											
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>				
+		</div>
+	</div>
+
+	<h3 class="col-md-12 text-center">NOVA MOVIMENTAÇÃO</h3>
+	<div class="col-md-12 text-center panel panel-default panel-body">
+		<form novalidate name="editForm" class="row" ng-submit="submit()">
+									
+			<div class="form-group col-md-2" ng-class="{true: 'has-error',false: 'is-required'}[editForm.purchasePrice.$invalid]">
+				<label>Preço de Compra *</label>								    
+			    <input ng-model="record.purchasePrice" type="text" ui-money-mask="2" class="form-control" name="purchasePrice" placeholder="Purchase Price" required> 
+			    <span class="help-block" ng-show="editForm.purchasePrice.$error.required" ></span>
+			</div>
+	  	
+			<div class="form-group col-md-2" ng-class="{true: 'has-error',false: 'is-required'}[editForm.salePrice.$dirty && editForm.salePrice.$invalid]">	
+				<label>Preço de Venda *</label>								    				    
+			    <input ng-model="record.salePrice" class="form-control" type="text" ui-money-mask="2" name="salePrice" placeholder="Sale Price" disabled required> 
+			    
+			</div>
+	  	
+			<div class="form-group col-md-2" ng-class="{true: 'has-error',false: 'is-required'}[editForm.volume.$invalid]">	  <label>Volume *</label>  
+			    <input ng-model="record.volume" min="1" ng-init="record.volume=1.0" type="number" min="0" class="form-control" name="volume" placeholder="Volume" required> 
+			    <span class="help-block" ng-show="editForm.volume.$error.required"></span>
+			</div>							
+	  	
+			<div class="form-group col-md-2" ng-class="{true: 'has-error',false: 'is-required'}[editForm.fabricationDate.$invalid]">
+				<label>Fabricação *</label>					  
+			    <input ng-model="record.fabricationDate" type="date" class="form-control" name="fabricationDate" placeholder="Fabricantion Date" required> 
+			    <span class="help-block" ng-show="editForm.fabricationDate.$error.required"></span>
+			</div>
+	  	
+			<div class="form-group col-md-2" ng-class="{true: 'has-error',false: 'is-required'}[editForm.expiryDate.$invalid]">
+				<label>Validade *</label>								
+			    <input ng-model="record.expiryDate" type="date" class="form-control" name="expiryDate" placeholder="Expiry Date" required> 
+			    <span class="help-block" ng-show="editForm.expiryDate.$error.required"></span>
+			</div>
+
+			<div class="form-group col-md-1" ng-class="{true: 'has-error',false: 'is-required'}[editForm.type.$dirty && editForm.type.$invalid]">
+				<label>Tipo *</label>							
+				<select name="type" ng-model="record._recordType" class="form-control" ng-options="type._id as (type.description) for type in types" required>
+					<option value="" selected disabled>Tipo</option>
+				</select>
+				<span class="help-block" ng-show="editForm.type.$dirty && editForm.type.$error.required"></span>
+			</div>
+	  		<div class="form-group col-md-1">
+	  			<label>&nbsp;</label>
+				<button type="submit" class="btn btn-primary btn-block" ng-disabled="editForm.$invalid">
+			    	<span class="glyphicon glyphicon-plus"></span>								
+				</button>
+			</div>								  	
+		</form>
+	</div>
+	<div class="col-md-12" ng-show="stock.record.length">		
+		<div class="table-responsive">
+			<table class="table table-striped table-responsive">
+			    <thead>
+			    	<caption class="text-center"><h3>HISTÓRICO DE MOVIMENTAÇÕES</h3></caption>
+				    <tr>
+				    	<th>Preço Compra</th>
+				    	<th>Preço Venda</th>		
+				        <th class="text-center">Volume</th>
+				        <th class="text-center">Fabricação</th>						        
+				        <th class="text-center">Validade</th>
+				        <th class="text-center">Tipo</th>
+				        <th class="text-center">Usuário</th>
+				        <th class="text-center">Data Registro</th>
+				    </tr>
+			    </thead>
+			    <tbody>
+			    	<tr ng-repeat="record in stock.record | filter: filter">
+				      	<td>{{record.purchasePrice | currency}}</td>  						        
+			    		<td>{{record.salePrice | currency}}</td>						    
+				      	<td class="text-center">{{record.volume}}</td>
+				      	<td class="text-center">{{record.fabricationDate | date:'dd/MM/yyyy'}}</td>
+				      	<td class="text-center">{{record.expiryDate | date:'dd/MM/yyyy'}}</td>
+				      	<td class="text-center" ng-show="record._recordType.code == 'OUT'">
+				      		<span class="glyphicon glyphicon-arrow-down red"></span>
+				      	</td>
+				      	<td class="text-center" ng-show="record._recordType.code == 'IN'">
+				      		<span class="glyphicon glyphicon-arrow-up green"></span>
+				      	</td>
+				      	<td class="text-center" ng-show="!record._recordType.code">
+				      		<span class="glyphicon glyphicon-minus"></span>
+				      	</td>
+				      	<td class="text-center">{{record._user.login}}</td>
+				      	<td class="text-center" class="text-center">{{record.insertionDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+			      	</tr>
+			    </tbody>
+			    <!--
+			    <tfoot>
+			      	<tr>
+			      		<th colspan="7" class="text-right">TOTAL</th>
+			      		<th class="text-center">{{1000 | currency}}</th>
+			      	</tr>
+			    </tfoot>
+			    -->
+			</table>
+		</div>
+	</div>
+
+	<div class="col-md-12">
+		<a href="#/drinks" class="btn btn-primary">Voltar</a>
+	</div>	

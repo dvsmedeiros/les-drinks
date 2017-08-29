@@ -18,6 +18,11 @@ angular.module('lesdrinks', ['ngRoute', 'ngResource', 'ui.utils.masks', 'appServ
 			controller: 'DrinkController'
 		});
 
+		$routeProvider.when('/drink/detail/:drinkId', {
+			templateUrl: 'partials/drink-detail.html',
+			controller: 'DrinkDetailController'
+		});
+
 		$routeProvider.when('/login', {
 			templateUrl: 'partials/login.html',
 			controller: 'LoginController'
@@ -27,6 +32,6 @@ angular.module('lesdrinks', ['ngRoute', 'ngResource', 'ui.utils.masks', 'appServ
 			templateUrl: 'partials/404.html'
 		});
 
-		$routeProvider.otherwise({redirectTo: '/404'});
+		$routeProvider.otherwise({redirectTo: '/drinks'});
 
 	});
