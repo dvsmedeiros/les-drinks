@@ -1,5 +1,5 @@
 angular.module('lesdrinks')
-	.factory('tokenInterceptor', function($window, $q, $location){
+	.factory('tokenInterceptor', function($rootScope, $window, $q, $location){
 
 		var interceptor = {};
 
@@ -18,6 +18,7 @@ angular.module('lesdrinks')
 			if($window.sessionStorage.token){
 				//console.log('add token no header');
 				config.headers['x-access-token'] = $window.sessionStorage.token;
+				$rootScope.user = angular.fromJson($window.sessionStorage.getItem('principal'));
 			}
 			//console.log(config.headers['x-access-token']);
 			return config;

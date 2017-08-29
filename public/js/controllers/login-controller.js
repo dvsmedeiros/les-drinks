@@ -1,21 +1,22 @@
 angular.module('lesdrinks').controller('LoginController', function($rootScope, $scope, $http, $location, $window){
 
-	$scope.user = {};
+	$rootScope.user = {};
 	$scope.message = '';
 
 	$scope.authenticate = function(){	
 		
-		var user = $scope.user;
+		var user = $rootScope.user;
 		$http.post('authenticate', {
 			login: user.login, 
 			password: user.password
 		})
-		.then(function(){
+		.then(function(res){
+			$window.sessionStorage.setItem('principal', JSON.stringify(res.data));	
 			$location.path('/');
 		}, function(error){
 			console.log(error);
    			$scope.message = 'Login ou password inválidos';
-   			$scope.user = {};
+   			$rootScope.user = {};
 		});
 
 	};
@@ -34,5 +35,7 @@ angular.module('lesdrinks').controller('LoginController', function($rootScope, $
 			return false;
 		}
 	}
+
+
 
 });

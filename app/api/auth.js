@@ -23,9 +23,9 @@ module.exports = function(app){
 				var token = jwt.sign({login: user.login}, app.get('secret'), {expiresIn: 84600}); 
 				console.log(token);
 				console.log('token criado e sendo enviado no header');
-
+				
 				res.set('x-access-token', token);
-				res.end();
+				res.json({_id: user._id, login: user.login});
 			}
 		});
 	};
