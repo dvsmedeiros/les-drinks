@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 
 consign({cwd: 'app'})
 	.include('models')
+	.then('controllers')
 	.then('api')
 	.then('routes/auth.js')
 	.then('routes')
