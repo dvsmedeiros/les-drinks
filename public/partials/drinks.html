@@ -15,36 +15,45 @@
 					ng-options="supplier._id as (supplier.companyName) for supplier in suppliers">
 					<option value="" selected disabled>Escolha um Fornecedor</option>
 				</select>	
+			</div>			
+			<div class="col-md-12 text-center">
+				<label class="control-label">Faixa de Preço</label>
 			</div>
-			<div class="col-md-12 form-group">
-				<select name="supplier" ng-model="drinkFilter._supplier._id" class="form-control" required 
-					ng-controller="ResourceController" ng-options="price._id as (price.value) for price in prices">
-					<option value="" selected disabled>Preço</option>
-				</select>
+			<div class="col-md-6 form-group">
+				<div class="form-group" ng-class="{true: 'has-error',false: 'is-required'}[editForm.initial.$invalid]">					    
+					    <input ng-model="drinkFilter.initial" type="text" ui-money-mask="2" class="form-control" name="initial" placeholder="Initial" ng-disabled="product._id"> 
+					    <span class="help-block" ng-show="editForm.initial.$error.required" ></span>
+				</div>	
 			</div>
-			<div class="col-md-12 form-group">
+			<div class="col-md-6 form-group">
+				<div class="form-group" ng-class="{true: 'has-error',false: 'is-required'}[editForm.final.$invalid]">						
+					    <input ng-model="drinkFilter.final" type="text" ui-money-mask="2" class="form-control" name="final" placeholder="Final" ng-disabled="product._id"> 
+					    <span class="help-block" ng-show="editForm.final.$error.required" ></span>
+				</div>	
+			</div>			
+			<div class="col-md-6 form-group">
+				<a class="btn btn-primary btn-block" ng-click="filterClean()">Limpar</a>
+			</div>
+			<div class="col-md-6 form-group">
 				<button type="submit" class="btn btn-primary btn-block" ng-disabled="editForm.$invalid">Filtrar</button>
 			</div>
 		</form>
 	</div>
 
 	<div class="col-md-9">
-		
-		<div class="col-md-12">
-			<div class="input-group">
-				<span class="input-group-btn">
-					<a href="#/drink/new" class="btn btn-primary" type="button">
-						Novo Produto
-					</a>
-				</span>
-				<input class="form-control" placeholder="Pesquisar"	ng-model="filter">
-			</div>
-		</div>			
-		<div class="col-md-12" ng-show="drinks.length">
+		<div class="input-group">
+			<span class="input-group-btn">
+				<a href="#/drink/new" class="btn btn-primary" type="button">
+					Novo Produto
+				</a>
+			</span>
+			<input class="form-control" placeholder="Pesquisar"	ng-model="filter">
+		</div>
+		<div ng-show="drinks.length">
 			<br />
 			<form novalidate name="editForm" ng-submit="submit()">
 				<div class="table-responsive">
-					<table class="table">
+					<table class="table table-striped">
 					    <thead>
 						    <tr>
 						    	<!--<th>#</th>-->
@@ -52,6 +61,7 @@
 						        <th>Código</th>
 						        <th>Fornecedor</th>						        
 						        <th>Categoria</th>
+						        <th>Preço de Venda</th>
 						        <th></th>
 						    </tr>
 					    </thead>
@@ -62,6 +72,7 @@
 						        <td>{{drink.code}}</td>
 						        <td>{{drink._supplier.companyName}}</td>						        
 						        <td>{{drink._category.name}}
+						        <td>{{drink.salePrice | currency}}</td>
 						        <td class="text-center text-nowrap">
 						        	<a href="#/drink/edit/{{drink._id}}" class="btn btn-warning">
 						        		<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
@@ -69,6 +80,9 @@
 						        	<a ng-click="remove(drink)" class="btn btn-danger">
 						        		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 						        	</a>
+						        	<a href="#/drink/detail/{{drink._id}}" class="btn btn-primary">
+						        		<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+						        	</a>						        	 
 						        </td>
 					      	</tr>
 					    </tbody>
