@@ -20,6 +20,7 @@
 		<script src="js/controllers/login-controller.js"></script>
 		<script src="js/controllers/drinks-controller.js"></script>
         <script src="js/controllers/drink-controller.js"></script>
+        <script src="js/controllers/drink-detail-controller.js"></script>
         <script src="js/controllers/resource-controller.js"></script>
         <script src="js/services/app-service.js"></script>
         <script src="js/services/token-interceptor.js"></script>
@@ -44,6 +45,7 @@
 	                <li>
 	                    <a href="/#/drinks">Produtos</a>
 	                </li>
+	                <!--
 	                <li>
 	                    <a href="/#/">Categorias</a>
 	                </li>
@@ -56,15 +58,26 @@
 	                <li>
 	                    <a href="/#/stock">Estoque</a>
 	                </li>
+	                -->
 	            	<li>
 	                    <a href="/#/">Auditoria</a>
 	                </li>
 	            </ul>  
                 <ul class="nav navbar-nav navbar-right" ng-show="isAuthenticated()" ng-controller="LoginController">    
-                    <li>
-                        <a ng-click="logout()" class="btn">        
-                            Logout&nbsp;<span class="glyphicon glyphicon-log-out"></span>
-                        </a>
+                    <li class="dropdown">
+                    	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    		{{$root.user.login}}&nbsp;
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            <span class="caret"></span></a>
+
+                        <ul class="dropdown-menu">
+                        	<li>
+                        		<a ng-click="logout()" class="btn">        
+                            		Logout&nbsp;<span class="glyphicon glyphicon-log-out"></span>
+                        		</a>		
+                        	</li>
+                        </ul>
+                        
                     </li>
                 </ul>
             </div>
