@@ -2,40 +2,47 @@
 
 <div class="row">
 
-	<div class="col-md-3">
+	<div class="col-md-3 panel panel-default panel-body">
 		<form novalidate name="editForm" class="row" ng-submit="findByFilter()">
-			<div class="col-md-12 form-group text">
+			<div class="col-md-12 form-group text">			
+				<label class="control-label">Categoria</label>
 				<select name="category" ng-model="drinkFilter._category" class="form-control" required 
 					ng-options="category._id as (category.name) for category in categories">
 					<option value="" selected disabled>Escolha uma Categoria</option>
 				</select>	
 			</div>
 			<div class="col-md-12 form-group">
+				<label class="control-label">Fornecedor</label>
 				<select name="supplier" ng-model="drinkFilter._supplier" class="form-control" required 
 					ng-options="supplier._id as (supplier.companyName) for supplier in suppliers">
 					<option value="" selected disabled>Escolha um Fornecedor</option>
 				</select>	
 			</div>			
-			<div class="col-md-12 text-center">
-				<label class="control-label">Faixa de Preço</label>
+			<div class="col-md-12">
+				<label class="control-label">Preço</label>
 			</div>
 			<div class="col-md-6 form-group">
 				<div class="form-group" ng-class="{true: 'has-error',false: 'is-required'}[editForm.initial.$invalid]">					    
-					    <input ng-model="drinkFilter.initial" type="text" ui-money-mask="2" class="form-control" name="initial" placeholder="Initial" ng-disabled="product._id"> 
+					    <input ng-model="drinkFilter.initial" type="text" ui-money-mask="2" class="form-control" name="initial" placeholder="De" ng-disabled="product._id"> 
 					    <span class="help-block" ng-show="editForm.initial.$error.required" ></span>
 				</div>	
 			</div>
 			<div class="col-md-6 form-group">
 				<div class="form-group" ng-class="{true: 'has-error',false: 'is-required'}[editForm.final.$invalid]">						
-					    <input ng-model="drinkFilter.final" type="text" ui-money-mask="2" class="form-control" name="final" placeholder="Final" ng-disabled="product._id"> 
+					    <input ng-model="drinkFilter.final" type="text" ui-money-mask="2" class="form-control" name="final" placeholder="Até" ng-disabled="product._id"> 
 					    <span class="help-block" ng-show="editForm.final.$error.required" ></span>
 				</div>	
-			</div>			
+			</div>
+					
 			<div class="col-md-6 form-group">
-				<a class="btn btn-primary btn-block" ng-click="filterClean()">Limpar</a>
+				<button class="btn btn-primary btn-block" ng-click="filterClean()">
+					<span class="glyphicon glyphicon-erase"></span>
+				</button>
 			</div>
 			<div class="col-md-6 form-group">
-				<button type="submit" class="btn btn-primary btn-block" ng-disabled="editForm.$invalid">Filtrar</button>
+				<button type="submit" class="btn btn-primary btn-block" ng-disabled="editForm.$invalid">
+					<span class="glyphicon glyphicon-search"></span>
+				</button>
 			</div>
 		</form>
 	</div>
