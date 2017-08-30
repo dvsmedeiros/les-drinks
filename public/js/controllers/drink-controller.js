@@ -52,7 +52,7 @@ angular.module('lesdrinks').controller('DrinkController', function($scope, $root
 		if ($scope.editForm.$valid) {
 
 			if($scope.product._id){
-				drinkResource.update({drinkId: $scope.product._id}, $scope.product, function(status) {
+				drinkResource.update({drinkId: $scope.product._id, userId : $rootScope.user._id}, $scope.product, function(status) {
 					$scope.product = {};
 					$scope.message = status.message;
 					$location.path('drinks');
@@ -64,7 +64,7 @@ angular.module('lesdrinks').controller('DrinkController', function($scope, $root
 				$scope.stock.record[0]._user = $rootScope.user._id;
 				$scope.stock.record[0]._recordType = $scope.types[0]._id;
 				$scope.product._category = $scope.categories.find(o => o._id === $scope.product._category._id);
-
+				
 				var req = {
 					product: $scope.product,
 					stock: $scope.stock

@@ -32,6 +32,11 @@ angular.module('lesdrinks', ['ngRoute', 'ngResource', 'ui.utils.masks', 'appServ
 			templateUrl: 'partials/404.html'
 		});
 
+		$routeProvider.when('/audit', {
+			templateUrl: 'partials/audit.html',
+			controller: 'AuditController'
+		});
+
 		$routeProvider.otherwise({redirectTo: '/drinks'});
 
 	});

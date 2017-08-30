@@ -1,0 +1,45 @@
+<div class="page-header text-center">
+	<h1>AUDITORIA</h1>
+</div>
+
+<p ng-show="message.length" class="alert alert-info">{{message}}</p>
+
+<div class="row">
+
+	<div class="col-md-12">
+		<div class="input-group">
+			<span class="input-group-addon">
+				<i class="glyphicon glyphicon-search"></i>
+			</span>
+			<input class="form-control" placeholder="Pesquisar"	ng-model="filter">
+		</div>
+		<div ng-show="trails.length">
+			<br />
+			<form novalidate name="editForm" ng-submit="submit()">
+				<div class="table-responsive">
+					<table class="table table-striped">
+					    <thead>
+						    <tr>						    	
+						    	<th>Tipo</th>
+						        <th>Modelo</th>
+						        <th>Ocorrência</th>						        
+						        <th>Usuário</th>
+						        <th class="text-center">Estado Anterior</th>						        
+						    </tr>
+					    </thead>
+					    <tbody>
+					    	<tr ng-repeat="trail in trails | filter: filter">
+						        						       
+						        <td>{{trail.type}}</td>
+						        <td>{{trail.model}}</td>
+						        <td class="text-center">{{trail.ocurrencyDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>		        
+						        <td>{{trail._user.login}}
+						        <td><pre>{{trail.stateBefore ? (trail.stateBefore | json) : '{}' }}</pre></td>						        
+					      	</tr>
+					    </tbody>
+					</table>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

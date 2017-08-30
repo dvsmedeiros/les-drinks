@@ -66,7 +66,7 @@ angular.module('lesdrinks').controller('DrinkDetailController', function($scope,
 			drink : $scope.stock._drink
 		}
 
-		stockRecordResource.update({stockId: $scope.stock._id}, req, function(data) {
+		stockRecordResource.update({stockId: $scope.stock._id, userId : $rootScope.user._id}, req, function(data) {
 
 			$scope.record = {
 				salePrice: 0.0,

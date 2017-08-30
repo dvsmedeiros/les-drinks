@@ -27,7 +27,7 @@ angular.module('lesdrinks').controller('DrinksController', function($scope, $roo
 
 	$scope.remove = function(drink){
 
-		drinkResource.delete({drinkId: drink._id}, function() {
+		drinkResource.delete({drinkId: drink._id, userId : $rootScope.user._id}, function() {
 			var index = $scope.drinks.indexOf(drink);
 			$scope.drinks.splice(index, 1);
 		}, function(erro) {

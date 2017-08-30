@@ -23,7 +23,7 @@ angular.module('appService', ['ngResource'])
 	.factory('recordTypeResource', function($resource) {
 		return $resource('/recordType/:recordTypeId', null, {
 			'update' : { 
-				method: 'PUT'
+				method: 'PUT'	
 			}
 		});
 	})
@@ -37,14 +37,21 @@ angular.module('appService', ['ngResource'])
 	.factory('stockResource', function($resource) {
 		return $resource('/stock/:drinkId', null, {
 			'update' : { 
-				method: 'PUT'
+				method: 'PUT'	
 			}
 		});
 	})
 	.factory('stockRecordResource', function($resource) {
 		return $resource('/stock/record/:stockId', null, {			
 			'update' : { 
-				method: 'PUT'
+				method: 'PUT'	
+			}
+		});
+	})
+	.factory('auditResource', function($resource) {
+		return $resource('/audit', null, {			
+			'update' : { 
+				method: 'PUT'	
 			}
 		});
 	})

@@ -8,6 +8,9 @@ module.exports = function (app) {
 
   api.saveRecord = function (req, res) {
     
+    var audit = app.api.audit;
+    var _user = req.query.userId;
+
     var model = {
       drink : req.body.drink,
       record : req.body.record
@@ -33,6 +36,9 @@ module.exports = function (app) {
         console.log(error);
         res.status(500).json(error);
       }
+
+      audit.trail(_user, 'UPDATE', 'Stock', record);
+      
       res.json(record);
     });
 
