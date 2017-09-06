@@ -45,6 +45,15 @@ angular.module('lesdrinks').controller('DrinkController', function($scope, $root
 		});
 	}
 
+	
+	$scope.$watch('product._category._id', function () {
+
+		if($scope.product._category){
+			$scope.product._category = $scope.categories.find(o => o._id === $scope.product._category._id);			
+		}
+    }, true);
+	
+
 	$scope.submit = function(){
 
 		console.log(JSON.stringify($scope.product));
@@ -63,7 +72,6 @@ angular.module('lesdrinks').controller('DrinkController', function($scope, $root
 
 				$scope.stock.record[0]._user = $rootScope.user._id;
 				$scope.stock.record[0]._recordType = $scope.types[0]._id;
-				$scope.product._category = $scope.categories.find(o => o._id === $scope.product._category._id);
 				
 				var req = {
 					product: $scope.product,
