@@ -28,11 +28,9 @@ angular.module('lesdrinks').controller('DrinkDetailController', function($scope,
 
 			$scope.stock = stock;			
 			$scope.stock.record.forEach(function(current){
-				if(current._recordType.code == 'IN'){
-					console.log('IN');
+				if(current._recordType.code == 'IN'){					
 					$scope.sum += current.volume;
 				} else if (current._recordType.code == 'OUT'){
-					console.log('OUT');
 					$scope.sum -= current.volume;
 				}
 			});
@@ -78,4 +76,5 @@ angular.module('lesdrinks').controller('DrinkDetailController', function($scope,
 			console.log(erro);
 		});
 	}
+	
 });
